@@ -31,6 +31,7 @@ public class 미로탐색 {
         anchor[0].fastest = 1;
         run(maze, anchor, N, M);
         System.out.println(maze[N][M].fastest);
+        in.close();
     }
 
     static void run(Point[][] maze, Point[] nextSearch, int N, int M) {
