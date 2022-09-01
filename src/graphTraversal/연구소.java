@@ -115,3 +115,6 @@ public class 연구소 {
         return count;
     }
 }
+
+// 함께 보기
+// 브루트포스 알고리즘
