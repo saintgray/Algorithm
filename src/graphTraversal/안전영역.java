@@ -15,7 +15,6 @@ public class 안전영역 {
     static int[] dx = {-1, 0, 0, 1};
     static int[] dy = {0, 1, -1, 0};
     static int size;
-    static int rain;
     static int rainRange = 0;
     static int safeZones = 0;
 
