@@ -1,106 +1,128 @@
 package graphTraversal;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
-
-//    7567 : 토마토
-//    ref url : https://www.acmicpc.net/problem/7576
+//    7569 : 토마토
+//    ref url : https://www.acmicpc.net/problem/7569
 
 public class 토마토 {
+    static int N;
+    static int M;
+    static int H;
+    static int[] dx = {0, 0, -1, 1, 0, 0};
+    static int[] dy = {1, -1, 0, 0, 0, 0};
+    static int[] dz = {0, 0, 0, 0, -1, 1};
     static int days = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int box[] = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
-        int N = box[1];
-        int M = box[0];
-
-        Tomato[][] tomatoes = new Tomato[N + 1][M + 1];
-        List<Tomato> anchors = new ArrayList<>();
-        boolean allRipes = true;
-        for (int i = 1; i < N + 1; i++) {
-            int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
-            for (int j = 0; j < row.length; j++) {
-                int stat = row[j];
-                if (allRipes && stat == 0) {
-                    allRipes = false;
-                }
-                if (stat != -1) {
-                    tomatoes[i][j + 1] = new Tomato(i, j + 1, stat == 1 ? true : false);
-                    if(tomatoes[i][j+1].ripe)
-                        anchors.add(tomatoes[i][j+1]);
+        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        N = params[1];
+        M = params[0];
+        H = params[2];
+        Tomato[][][] tomatoBoxes = new Tomato[H][N][M];
+        for (int h = 0; h < H; h++) {
+            for (int n = 0; n < N; n++) {
+                int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+                for (int m = 0; m < M; m++) {
+                    // 1 : 익은토마토, 0 : 익지않은 토마토 , -1 : 비어있는 칸
+                    int stat = row[m];
+                    if (row[m] != -1)
+                        tomatoBoxes[h][n][m] = new Tomato(h, n, m, stat == 1 ? true : false);
                 }
             }
         }
-
-        if(allRipes){
-            System.out.println(0);
-        }else{
-            run(tomatoes, anchors.toArray(new Tomato[anchors.size()]), N, M);
-            System.out.println(allTomatoRipes(tomatoes) ? days : -1);
-        }
-
+        run(tomatoBoxes);
+        System.out.println(allRipes(tomatoBoxes) ? days : -1);
         in.close();
     }
 
-    static void run(Tomato[][] tomatoes, Tomato[] anchors, int N, int M) {
 
-        List<Tomato> nextAnchors = new ArrayList<>();
-        for (Tomato tomato : anchors) {
-            int i = tomato.i;
-            int j = tomato.j;
-            if (i - 1 >= 1 && tomatoes[i - 1][j] != null && !tomatoes[i - 1][j].ripe) {
-                tomatoes[i - 1][j].ripe = true;
-                nextAnchors.add(tomatoes[i - 1][j]);
-            }
-            if (i + 1 <= N && tomatoes[i + 1][j] != null && !tomatoes[i + 1][j].ripe) {
-                tomatoes[i + 1][j].ripe = true;
-                nextAnchors.add(tomatoes[i + 1][j]);
-            }
-            if (j - 1 >= 1 && tomatoes[i][j - 1] != null && !tomatoes[i][j - 1].ripe) {
-                tomatoes[i][j - 1].ripe = true;
-                nextAnchors.add(tomatoes[i][j - 1]);
-            }
-            if (j + 1 <= M && tomatoes[i][j + 1] != null && !tomatoes[i][j + 1].ripe) {
-                tomatoes[i][j + 1].ripe = true;
-                nextAnchors.add(tomatoes[i][j +1]);
-            }
-        }
-        if (!nextAnchors.isEmpty()) {
-            days++;
-            run(tomatoes, nextAnchors.toArray(new Tomato[nextAnchors.size()]), N, M);
-        }
-    }
-
-    static boolean allTomatoRipes(Tomato[][] tomatoes) {
-        boolean result = true;
-        for (int i = 1; i < tomatoes.length; i++) {
-            for (int j = 1; j < tomatoes[i].length; j++) {
-                Tomato tomato = tomatoes[i][j];
-                if (tomato != null && !tomato.ripe) {
-                    result = false;
-                    break;
+    static void run(Tomato[][][] tomatoes) {
+        Queue<Tomato> queue = new LinkedList<>();
+        int prevAdded = 0;
+        for (int h = 0; h < H; h++) {
+            for (int n = 0; n < N; n++) {
+                for (int m = 0; m < M; m++) {
+                    Tomato tomato = tomatoes[h][n][m];
+                    if (tomato != null && tomato.ripe) {
+                        queue.add(tomato);
+                        prevAdded ++;
+                    }
                 }
             }
         }
-        return result;
+        while (prevAdded > 0) {
+            int added = 0;
+            for (int add = 0; add < prevAdded; add++) {
+                Tomato tomato = queue.poll();
+                for (int i = 0; i < 6; i++) {
+                    int scanX = tomato.m + dx[i];
+                    int scanY = tomato.n + dy[i];
+                    int scanZ = tomato.h + dz[i];
+                    if (boundary(scanZ, scanY, scanX)) {
+                        Tomato neighborTomato = tomatoes[scanZ][scanY][scanX];
+                        if (neighborTomato != null && !neighborTomato.ripe) {
+                            queue.add(neighborTomato);
+                            neighborTomato.ripe = true;
+                            added ++;
+                        }
+                    }
+                }
+            }
+            prevAdded = added;
+            if(prevAdded >0)
+                days++;
+        }
+
     }
 
-    static class Tomato {
-        int i;
-        int j;
-        boolean ripe;
+    static boolean boundary(int h, int n, int m) {
+        return m >= 0 && n >= 0 && h >= 0 && m < M && n < N && h < H;
+    }
 
-        public Tomato(int i, int j, boolean ripe) {
-            this.i = i;
-            this.j = j;
-            this.ripe = ripe;
+    static boolean allRipes(Tomato[][][] tomatoes) {
+        for (int h = 0; h < H; h++) {
+            for (int n = 0; n < N; n++) {
+                for (int m = 0; m < M; m++) {
+                    if (tomatoes[h][n][m] != null && !tomatoes[h][n][m].ripe) {
+                        return false;
+                    }
+                }
+            }
         }
+        return true;
+    }
+
+//    static void debug(Tomato[][][] tomatoes) {
+//        for (int h = 0; h < H; h++) {
+//            for (int n = 0; n < N; n++) {
+//                for (int m = 0; m < M; m++) {
+//                    System.out.printf("%s ", tomatoes[h][n][m] == null ? "." : tomatoes[h][n][m].ripe ? "O" : "X");
+//                }
+//                System.out.println();
+//            }
+//        }
+//        System.out.println();
+//    }
+
+}
+
+class Tomato {
+    int h;
+    int n;
+    int m;
+    boolean ripe;
+
+    public Tomato(int h, int n, int m, boolean ripe) {
+        this.h = h;
+        this.n = n;
+        this.m = m;
+        this.ripe = ripe;
     }
 }
