@@ -1,11 +1,11 @@
-package Q1_100;
+package mathmatics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Q10_FlymetotheAlpha {
+public class FlymetotheAlphaCentauri {
 
 	public static void main(String[] args) throws IOException {
 		// 최소작동횟수이므로 우주비행선의 이동한 경로를 그래프로 그린다 치면 최대한 많은 광년을 이동하다가

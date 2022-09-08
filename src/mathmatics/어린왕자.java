@@ -1,4 +1,4 @@
-package Q1_100;
+package mathmatics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import java.util.StringTokenizer;
 
 // 코딩테스트 출력값
 //각 테스트 케이스에 대해 어린 왕자가 거쳐야 할 최소의 행성계 진입/이탈 횟수를 출력한다.
-public class Q5_Little_Prince {
+public class 어린왕자 {
 
 	// Variables
 	InputStreamReader sr = new InputStreamReader(System.in);
@@ -42,7 +42,7 @@ public class Q5_Little_Prince {
 	// 나의 접근 방법.
 	// 테스트의 갯수를 테스트 배열에 저장한다.
 	public static void main(String[] args) throws IOException {
-		Q5_Little_Prince main = new Q5_Little_Prince();
+		어린왕자 main = new 어린왕자();
 		int test = Integer.parseInt(main.br.readLine());
 //		System.out.println("테스트 횟수 = 행성 갱신수 는 " + test + "회입니다");
 		main.testPlanet = new Planet[test][]; // Planet 배열의 모음(테스트를 여러번 하므로)

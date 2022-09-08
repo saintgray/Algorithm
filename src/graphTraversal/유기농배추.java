@@ -1,4 +1,4 @@
-package Q1_100;
+package graphTraversal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Q_11_유기농배추 {
+public class 유기농배추 {
 	
 	static List<Loc> foundCab = new LinkedList<Loc>();
 	static boolean[][] farm;

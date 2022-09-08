@@ -1,4 +1,4 @@
-package Q1_100;
+package dynamicProgramming;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,7 +45,7 @@ import java.util.StringTokenizer;
 //
 //건설순서는 모든 건물이 건설 가능하도록 주어진다.
 
-public class Q5_ACM_CRAFT {
+public class ACM_CRAFT {
 
 	// 위상 정렬로 접근
 
@@ -55,18 +55,10 @@ public class Q5_ACM_CRAFT {
 		int[] fastestBuildTime = new int[test];
 		int tried = 0;
 		while (tried != test) {
-//debug		System.out.println("while문 진입");
-//debug  	System.out.println("현재 test 값: " + test);
-
 			StringTokenizer t1 = new StringTokenizer(in.readLine(), " ");
-
-			// 건물의 갯수와 규칙의 갯수가 입력된다.
 			Buildings[] buildings = new Buildings[Integer.parseInt(t1.nextToken()) + 1];
 			// 인덱스를 건물 번호로 쓸 것이므로 빌딩 배열의 0번 index는 쓰지 않고 사용한다.
 			int numOfRules = Integer.parseInt(t1.nextToken());
-
-//debug		System.out.println("건물 규칙과 규칙 갯수를 입력받았습니다.");
-			// 빌드타임이 공백을 포함하여 입력된다. // 총 건물의 갯수만큼 빌드타임이 입력된다.
 			t1 = new StringTokenizer(in.readLine(), " ");
 			int index = 1;
 			while (t1.hasMoreTokens()) {
@@ -75,11 +67,7 @@ public class Q5_ACM_CRAFT {
 				buildings[index] = b;
 				index++;
 			}
-//debug		System.out.println("빌드 타임 입력됨");
-
-			// K 개의 건설 순서가 주어진다.
 			for (int i = 0; i < numOfRules; i++) {
-
 				t1 = new StringTokenizer(in.readLine(), " ");
 				int X = Integer.parseInt(t1.nextToken());
 				int Y = Integer.parseInt(t1.nextToken());
@@ -92,97 +80,50 @@ public class Q5_ACM_CRAFT {
 				buildings[Y].needs.add(X);
 				buildings[Y].indegree++;
 			}
-//debug		System.out.println("건설 순서 입력됨");
-
-			// 마지막으로 최백준이 지어야 할 건물의 번호 W가 주어진다.
 			int W = Integer.parseInt(in.readLine());
-
-//debug	    System.out.println("건물 번호 입력됨");
-
-			//////////////////////////////////////////////////////////////
-			// 최단거리 계산 시작
-			//////////////////////////////////////////////////////////////
-			
-			// 간선수가 0인 건물을 찾는다.		
-			int phaseCounting =0;
-			
-			while(!(phaseCounting == buildings.length-1)) {
+			// 간선수가 0인 건물을 찾는다.
+			int phaseCounting = 0;
+			while (!(phaseCounting == buildings.length - 1)) {
 				// phaseCounting : 간선이 0인 건물을 찾을 때마다 1씩 증가시킴
 				// 위상 정렬을 끝냈다는 말은 phaseCounting의 값이 건물의 수와 같아지는 순간이므로
 				// 그때 반복문을 종료한다.
-				
-				
 				for (int i = 1; i < buildings.length; i++) {
-//					System.out.println("간선수 0인 건물 스캔중");
-//					System.out.println(i + "번 건물 간선수: " + buildings[i].indegree);
 					if (buildings[i].indegree == 0 && buildings[i].checked) {
 						phaseCounting++;
-
-//						System.out.println("간선수 0 인 건물 발견!");
-
-						// 2.찾았다면, 해당 건물의 최소 빌딩 시간은 이 건물의 선행 조건이 되는 모든 건물들의 최소 빌딩 시간중 가장 큰 값이다.
-						// 또한 이 건물을 지어야 지을 수 있는 건물들의 ingegree (간선 수 ) 를 -1 씩 감소시킨다.
-
-						// 위상 정렬을 했다는 것을 표시해준다.
 						buildings[i].checked = false;
-
 						// 만약 선행 건물이 없다면 ( = 최초로 위상정렬을 시작하는 건물이면 )
 						// 최단 건설 시간은 빌드타임과 같다. (바로 만들 수 있으므로)
 						if (buildings[i].needs.size() == 0) {
-//							System.out.println("선행 건물이 없어 " + i + "번 건물의 최소 건설 시간은 빌드타임과 같습니다.");
 							buildings[i].fastestBuildTime = buildings[i].buildTime;
-
 							// 그 이외의 경우는 연결된 선행 건물들의 최단시간과 자신의 빌드타임을 더한 값의 최대값이
 							// 자신의 건설 최단 시간이다. (왜냐하면 선행 건물들이 다 지어지기 전에는 짓지 못하기 때문이다.)
 						} else {
 							for (int k = 0; k < buildings[i].needs.size(); k++) {
 								// 빌딩의 건설 최단 시간 계산
+								if (buildings[i].fastestBuildTime <= buildings[buildings[i].needs.get(k)].fastestBuildTime + buildings[i].buildTime) {
 
-								if (buildings[i].fastestBuildTime <= buildings[buildings[i].needs
-										.get(k)].fastestBuildTime + buildings[i].buildTime) {
-
-									buildings[i].fastestBuildTime = buildings[buildings[i].needs
-											.get(k)].fastestBuildTime + buildings[i].buildTime;
-//									System.out.println(i + "번 건물의 최소 빌딩 시간 갱신!" + buildings[i].fastestBuildTime);
+									buildings[i].fastestBuildTime = buildings[buildings[i].needs.get(k)].fastestBuildTime + buildings[i].buildTime;
 								}
 							}
 						}
-
-						// 다음 스캔을 위해서
 						// 마지막으로 해당 건물 다음에 지을 수 있는 건물들의 간선 수를 감소시킨다.
 						for (int j = 0; j < buildings[i].chained.size(); j++) {
-//							System.out.println(i + "번 건물을 짓고나야 지을 수 있는 건물의 간선을 제거했습니다.");
-
 							buildings[buildings[i].chained.get(j)].indegree--;
-						}			
-					} 
-					
-					
-					
-					
-					// 다시 간선수가 0인 건물들을 찾는다. >> i for 문으로
+						}
+					}
 				}
 			}
-			
-
-			// 빠져나왔다면 fastestBuildTime 배열에 저장
 			fastestBuildTime[tried] = buildings[W].fastestBuildTime;
 			tried++;
-		} // 테스트 횟수만큼 최단 시간 계산 반복
-
-		// 계산 결과 출력
+		}
+		// result
 		for (
 
 				int i = 0; i < fastestBuildTime.length; i++) {
 			System.out.printf("%d ", fastestBuildTime[i]);
 		}
-
-	} // end of main method
-
-} // end of ACM_CRAFT CLASS
-
-// 건물 객체
-
+	}
+}
 class Buildings {
 	// 이 건물을 짓고나야 지을 수 있는 건물 번호의 모음
 	List<Integer> chained = new LinkedList<Integer>();
