@@ -27,12 +27,12 @@ public class 욕심쟁이판다 {
             map[i] = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
-                movedResult = Math.max(movedResult, runEat(0, map, i, j, map[i][j]));
+                movedResult = Math.max(movedResult, runEat(map, i, j, map[i][j]));
         System.out.println(movedResult +1);
     }
 
 
-    static int runEat(int moved, int[][] map, int x, int y, int cnt) {
+    static int runEat(int[][] map, int x, int y, int cnt) {
 
         if (memoization[x][y] != null)
             return memoization[x][y];
@@ -43,7 +43,7 @@ public class 욕심쟁이판다 {
             int nextX = x + dx[i];
             int nextY = y + dy[i];
             if (isBoundary(nextX, nextY) && map[nextX][nextY] > cnt) {
-                moveMemo = Math.max(moveMemo, 1 + runEat(moved + 1, map, nextX, nextY, map[nextX][nextY]));
+                moveMemo = Math.max(moveMemo, 1 + runEat(map, nextX, nextY, map[nextX][nextY]));
             }
         }
         map[x][y] = cnt;
