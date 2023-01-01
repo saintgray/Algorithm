@@ -9,7 +9,6 @@ import java.util.Queue;
 
 //    7562 : 나이트의 이동
 //    ref url : https://www.acmicpc.net/problem/7562
-
 public class 나이트의이동 {
     static int[] dx = {-2, -2, 2, 2, 1, -1, 1, -1};
     static int[] dy = {1, -1, 1, -1, -2, -2, 2, 2};
@@ -53,14 +52,16 @@ public class 나이트의이동 {
             }
         }
     }
-}
 
-class Point {
-    int i;
-    int j;
+    static class Point {
+        int i;
+        int j;
 
-    public Point(int i, int j) {
-        this.i = i;
-        this.j = j;
+        public Point(int i, int j) {
+            this.i = i;
+            this.j = j;
+        }
     }
 }
+
+

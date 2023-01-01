@@ -7,7 +7,6 @@ import java.util.*;
 
 //    14502 : 연구소
 //    ref url : https://www.acmicpc.net/problem/14502
-
 public class 연구소 {
     static int safeZones = 0;
 

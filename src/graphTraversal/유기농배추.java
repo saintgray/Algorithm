@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+
+//    1012 : 유기농배추
+//    ref url : https://www.acmicpc.net/problem/1012
 public class 유기농배추 {
 	
 	static List<Loc> foundCab = new LinkedList<Loc>();
@@ -133,44 +136,33 @@ public class 유기농배추 {
 		return result;
 	}
 
-//	private static void showFarm() {
-//		for (int i = 0; i < farm.length; i++) {
-//			for (int j = 0; j < farm[i].length; j++) {
-//				if (farm[i][j] == true) {
-//					System.out.print("[1]");
-//				} else {
-//					System.out.print("[0]");
-//				}
-//			}
-//			System.out.println();
-//		}
-//	}
+	// 배추위 위치
+	static class Loc {
+		int x;
+		int y;
 
-}
-
-// 배추위 위치
-class Loc {
-	int x;
-	int y;
-
-	public Loc(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-
-	public boolean equals(Object obj) {
-		boolean result = false;
-		if (obj instanceof Loc) {
-			Loc loc = (Loc) obj;
-			if (loc.x == this.x && loc.y == this.y) {
-				result = true;
-			}
+		public Loc(int x, int y) {
+			this.x = x;
+			this.y = y;
 		}
-		return result;
-	}
 
-	public String toString() {
-		return String.valueOf(this.x).concat(",").concat(String.valueOf(this.y));
+		public boolean equals(Object obj) {
+			boolean result = false;
+			if (obj instanceof Loc) {
+				Loc loc = (Loc) obj;
+				if (loc.x == this.x && loc.y == this.y) {
+					result = true;
+				}
+			}
+			return result;
+		}
+
+		public String toString() {
+			return String.valueOf(this.x).concat(",").concat(String.valueOf(this.y));
+		}
+
 	}
 
 }
+
+

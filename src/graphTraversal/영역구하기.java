@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 //    2583 : 영역구하기
 //    ref url : https://www.acmicpc.net/status?from_problem=1&problem_id=2583
-
 public class 영역구하기 {
     static int M;
     static int N;

@@ -10,7 +10,6 @@ import java.util.List;
 
 //    2606 : 바이러스
 //    ref url : https://www.acmicpc.net/problem/2606
-
 public class 바이러스 {
 
     public static int infested = 0;

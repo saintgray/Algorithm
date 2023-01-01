@@ -7,8 +7,6 @@ import java.util.Queue;
 
 //    4963 : 섬의 개수
 //    ref url : https://www.acmicpc.net/problem/4963
-
-
 public class 섬의개수 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

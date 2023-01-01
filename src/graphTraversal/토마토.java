@@ -9,7 +9,6 @@ import java.util.Queue;
 
 //    7569 : 토마토
 //    ref url : https://www.acmicpc.net/problem/7569
-
 public class 토마토 {
     static int N;
     static int M;
@@ -99,30 +98,20 @@ public class 토마토 {
         return true;
     }
 
-//    static void debug(Tomato[][][] tomatoes) {
-//        for (int h = 0; h < H; h++) {
-//            for (int n = 0; n < N; n++) {
-//                for (int m = 0; m < M; m++) {
-//                    System.out.printf("%s ", tomatoes[h][n][m] == null ? "." : tomatoes[h][n][m].ripe ? "O" : "X");
-//                }
-//                System.out.println();
-//            }
-//        }
-//        System.out.println();
-//    }
+    static class Tomato {
+        int h;
+        int n;
+        int m;
+        boolean ripe;
 
-}
-
-class Tomato {
-    int h;
-    int n;
-    int m;
-    boolean ripe;
-
-    public Tomato(int h, int n, int m, boolean ripe) {
-        this.h = h;
-        this.n = n;
-        this.m = m;
-        this.ripe = ripe;
+        public Tomato(int h, int n, int m, boolean ripe) {
+            this.h = h;
+            this.n = n;
+            this.m = m;
+            this.ripe = ripe;
+        }
     }
+
 }
+
+

@@ -85,19 +85,21 @@ public class ACM_CRAFT {
 			System.out.printf("%d ", fastestBuildTime[i]);
 		}
 	}
-}
-class Buildings {
-	// 이 건물을 짓고나야 지을 수 있는 건물 번호의 모음
-	List<Integer> chained = new LinkedList<Integer>();
-	// 이 건물을 짓기 전에 지어야 하는 건물 번호
-	List<Integer> needs = new LinkedList<Integer>();
-	// 이 건물의 빌드타임
-	int buildTime;
-	// 자신을 짓기위해 선행하여 지어야만 하는 총 건물의 갯수
-	int indegree;
-	// 이 건물을 짓기위한 최소시간
-	int fastestBuildTime;
-	// 위상정렬을 했으면 false, 아직 안했으면 true
-	boolean checked = true;
 
+	static class Buildings {
+		// 이 건물을 짓고나야 지을 수 있는 건물 번호의 모음
+		List<Integer> chained = new LinkedList<Integer>();
+		// 이 건물을 짓기 전에 지어야 하는 건물 번호
+		List<Integer> needs = new LinkedList<Integer>();
+		// 이 건물의 빌드타임
+		int buildTime;
+		// 자신을 짓기위해 선행하여 지어야만 하는 총 건물의 갯수
+		int indegree;
+		// 이 건물을 짓기위한 최소시간
+		int fastestBuildTime;
+		// 위상정렬을 했으면 false, 아직 안했으면 true
+		boolean checked = true;
+
+	}
 }
+

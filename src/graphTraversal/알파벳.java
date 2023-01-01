@@ -7,7 +7,6 @@ import java.util.*;
 
 //    1987 : 알파벳
 //    ref url : https://www.acmicpc.net/problem/1987
-
 public class 알파벳 {
     static int[] dx = {-1, 0, 0, 1};
     static int[] dy = {0, 1, -1, 0};

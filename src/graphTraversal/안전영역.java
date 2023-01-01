@@ -9,7 +9,6 @@ import java.util.Queue;
 
 //    2468 : 안전영역
 //    ref url : https://www.acmicpc.net/problem/2468
-
 public class 안전영역 {
 
     static int[] dx = {-1, 0, 0, 1};
@@ -69,15 +68,17 @@ public class 안전영역 {
             }
         }
     }
-}
 
+    static class Coord {
+        int i;
+        int j;
 
-class Coord {
-    int i;
-    int j;
-
-    public Coord(int i, int j) {
-        this.i = i;
-        this.j = j;
+        public Coord(int i, int j) {
+            this.i = i;
+            this.j = j;
+        }
     }
 }
+
+
+

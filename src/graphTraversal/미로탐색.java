@@ -9,7 +9,6 @@ import java.util.List;
 
 //    2178 : 미로탐색
 //    ref url : https://www.acmicpc.net/problem/2178
-
 public class 미로탐색 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
