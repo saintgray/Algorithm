@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 //    1932 : 정수 삼각형
 //    ref url : https://www.acmicpc.net/problem/1932
-
 public class 정수삼각형 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

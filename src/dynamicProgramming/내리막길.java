@@ -8,7 +8,6 @@ import java.util.Arrays;
 //    1520 : 내리막길
 //    ref url : https://www.acmicpc.net/problem/1520
 //    hint : Dynamic Programming and DFS
-
 public class 내리막길 {
     static int cases = 0;
     static int M = 0;

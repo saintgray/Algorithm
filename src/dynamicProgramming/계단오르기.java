@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 
 //    2579 : 계단 오르기
 //    ref url : https://www.acmicpc.net/problem/2579
-
 public class 계단오르기 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

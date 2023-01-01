@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 //    1149 : RGB 거리
 //    ref url : https://www.acmicpc.net/problem/1149
-
 public class RGB거리 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
