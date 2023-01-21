@@ -15,14 +15,11 @@ public class 서로다른부분문자열의갯수 {
 
         Set<String> set = new HashSet<>();
         int size = 0;
-        StringBuilder builder = new StringBuilder();
         while(true){
             for (int i = 0; i < input.length(); i++) {
                 if (i + size < input.length()) {
                     for (int j = i; j <= i + size; j++)
-                        builder.append(input.charAt(j));
-                    set.add(builder.toString());
-                    builder.delete(0, builder.length());
+                        set.add(input.substring(i, i + size + 1));
                 }
             }
             if(size++ == input.length())
