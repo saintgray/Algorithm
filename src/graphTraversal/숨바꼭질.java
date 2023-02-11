@@ -15,11 +15,11 @@ public class 숨바꼭질 {
         int[] times = new int[100001];
         boolean[] searched = new boolean[100001];
 
-        int[] coordinate = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] coordinate = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int subin = coordinate[0];
         int sister = coordinate[1];
         searched[subin] = true;
-        Integer[] nextRun  = new Integer[1];
+        Integer[] nextRun = new Integer[1];
         nextRun[0] = subin;
 
         try {
@@ -53,6 +53,6 @@ public class 숨바꼭질 {
             throw new Exception();
 
         if (!nextRuns.isEmpty())
-            run(times, searched, nextRuns.toArray(new Integer[nextRuns.size()]), sister);
+            run(times, searched, nextRuns.toArray(new Integer[0]), sister);
     }
 }

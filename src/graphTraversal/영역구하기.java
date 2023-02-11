@@ -17,13 +17,13 @@ public class 영역구하기 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         N = params[0];
         M = params[1];
         K = params[2];
         GridPaper[][] papers = new GridPaper[N][M];
         for (int k = 0; k < K; k++) {
-            int[] sizeParam = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] sizeParam = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int x1 = sizeParam[0];
             int y1 = sizeParam[1];
             int x2 = sizeParam[2];
@@ -39,8 +39,8 @@ public class 영역구하기 {
         run(papers, areaSizes);
         areaSizes = areaSizes.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
         System.out.println(areaSizes.size());
-        for(int n : areaSizes)
-            System.out.printf("%d ",n);
+        for (int n : areaSizes)
+            System.out.printf("%d ", n);
         in.close();
     }
 
@@ -50,7 +50,7 @@ public class 영역구하기 {
             for (int j = 0; j < papers[i].length; j++) {
                 if (papers[i][j] == null) {
                     int areaSize = 1;
-                    GridPaper gridInfo = new GridPaper(i,j,false);
+                    GridPaper gridInfo = new GridPaper(i, j, false);
                     papers[i][j] = gridInfo;
                     queue.add(gridInfo);
                     while (!queue.isEmpty()) {

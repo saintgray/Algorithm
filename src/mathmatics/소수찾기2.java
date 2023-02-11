@@ -14,7 +14,7 @@ public class 소수찾기2 {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(in.readLine());
-        int[] numbers = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] numbers = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
         for(int number : numbers){
 
@@ -27,7 +27,7 @@ public class 소수찾기2 {
                 }
             }
 
-            if(number ==1 || (number !=1 && !isPrimeNumber))
+            if(number ==1 || !isPrimeNumber)
                 N--;
         }
         System.out.println(N);

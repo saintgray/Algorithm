@@ -12,7 +12,7 @@ public class RGB거리 {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         House[][] houses = new House[Integer.parseInt(in.readLine())][3];
         for (int i = 0; i < houses.length; i++) {
-            int[] info = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] info = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < info.length; j++) {
                 houses[i][j] = new House(j == 0 ? 'R' : j == 1 ? 'G' : 'B', info[j]);
                 if (i == 0) {
@@ -31,7 +31,7 @@ public class RGB거리 {
                 }
             }
         }
-        System.out.println(Arrays.stream(houses[houses.length-1]).mapToInt(e -> e.minimumCost).min().getAsInt());
+        System.out.println(Arrays.stream(houses[houses.length - 1]).mapToInt(e -> e.minimumCost).min().getAsInt());
         in.close();
     }
 

@@ -29,7 +29,7 @@ public class 한줄로서기 {
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
         int guys = Integer.parseInt(in.readLine());
         int[] result = new int[guys + 1];
-        int[] note = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] note = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < note.length; i++) {
             int taller = note[i];
             int tallerCount = 0;
@@ -38,8 +38,8 @@ public class 한줄로서기 {
                     result[j] = i + 1;
                     break;
                 } else {
-                    if(result[j] == 0 || result[j] > i+1)
-                    tallerCount++;
+                    if (result[j] == 0 || result[j] > i + 1)
+                        tallerCount++;
                 }
             }
         }

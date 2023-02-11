@@ -20,19 +20,19 @@ public class 토마토 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         N = params[1];
         M = params[0];
         H = params[2];
         Tomato[][][] tomatoBoxes = new Tomato[H][N][M];
         for (int h = 0; h < H; h++) {
             for (int n = 0; n < N; n++) {
-                int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+                int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
                 for (int m = 0; m < M; m++) {
                     // 1 : 익은토마토, 0 : 익지않은 토마토 , -1 : 비어있는 칸
                     int stat = row[m];
                     if (row[m] != -1)
-                        tomatoBoxes[h][n][m] = new Tomato(h, n, m, stat == 1 ? true : false);
+                        tomatoBoxes[h][n][m] = new Tomato(h, n, m, stat == 1);
                 }
             }
         }
@@ -51,7 +51,7 @@ public class 토마토 {
                     Tomato tomato = tomatoes[h][n][m];
                     if (tomato != null && tomato.ripe) {
                         queue.add(tomato);
-                        prevAdded ++;
+                        prevAdded++;
                     }
                 }
             }
@@ -69,13 +69,13 @@ public class 토마토 {
                         if (neighborTomato != null && !neighborTomato.ripe) {
                             queue.add(neighborTomato);
                             neighborTomato.ripe = true;
-                            added ++;
+                            added++;
                         }
                     }
                 }
             }
             prevAdded = added;
-            if(prevAdded >0)
+            if (prevAdded > 0)
                 days++;
         }
 

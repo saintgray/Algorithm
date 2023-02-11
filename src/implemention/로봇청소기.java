@@ -18,13 +18,13 @@ public class 로봇청소기 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         // 0: 북 1: 동 2: 남 3: 서
-        int[] param = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] param = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         R = param[0];
         C = param[1];
         int[][] room = new int[R][C];
-        int[] robotInfo = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] robotInfo = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < room.length; i++)
-            room[i] = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            room[i] = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         Robot robot = new Robot(robotInfo[0], robotInfo[1], robotInfo[2]);
 
         do {
@@ -55,6 +55,7 @@ public class 로봇청소기 {
             this.c = c;
             this.lookingDirection = lookingDirection;
         }
+
         public void rotate() {
             this.lookingDirection = this.lookingDirection == 0 ? 3 :
                     this.lookingDirection == 3 ? 2 :

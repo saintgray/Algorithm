@@ -23,7 +23,7 @@ public class 안전영역 {
         size = Integer.parseInt(in.readLine());
         int[][] region = new int[size + 1][size + 1];
         for (int i = 0; i < region.length - 1; i++) {
-            int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < row.length; j++) {
                 region[i + 1][j + 1] = row[j];
                 rainRange = Math.max(row[j], rainRange);

@@ -12,9 +12,9 @@ public class 잃어버린괄호 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String[] exp = in.readLine().split("-");
-        int result  = Arrays.stream(Arrays.stream(exp[0].split("\\+")).mapToInt(e -> Integer.parseInt(e)).toArray()).reduce((total,n) -> total+n).getAsInt();;
+        int result  = Arrays.stream(Arrays.stream(exp[0].split("\\+")).mapToInt(Integer::parseInt).toArray()).reduce((total,n) -> total+n).getAsInt();;
         for (int i = 1; i < exp.length; i++) {
-            int sum = Arrays.stream(Arrays.stream(exp[i].split("\\+")).mapToInt(e -> Integer.parseInt(e)).toArray()).reduce((total,n) -> total+n).getAsInt();
+            int sum = Arrays.stream(Arrays.stream(exp[i].split("\\+")).mapToInt(Integer::parseInt).toArray()).reduce((total,n) -> total+n).getAsInt();
             result -= sum;
         }
         System.out.println(result);

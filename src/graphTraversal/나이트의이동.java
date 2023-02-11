@@ -19,8 +19,8 @@ public class 나이트의이동 {
         int testCases = Integer.parseInt(in.readLine());
         for (int i = 0; i < testCases; i++) {
             size = Integer.parseInt(in.readLine());
-            int[] knightCoordinate = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
-            int[] goalCoordinate = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] knightCoordinate = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            int[] goalCoordinate = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int[][] map = new int[size][size];
             scan(map, knightCoordinate[0], knightCoordinate[1], goalCoordinate[0], goalCoordinate[1]);
             System.out.println(map[goalCoordinate[0]][goalCoordinate[1]] - 1);

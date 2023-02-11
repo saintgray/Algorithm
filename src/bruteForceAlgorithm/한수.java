@@ -16,7 +16,7 @@ public class 한수 {
         } else {
             int cnt = 0;
             for (int i = 100; i <= N; i++) {
-                int[] numArr = Arrays.stream(String.valueOf(i).split("")).mapToInt(e -> Integer.parseInt(e)).toArray();
+                int[] numArr = Arrays.stream(String.valueOf(i).split("")).mapToInt(Integer::parseInt).toArray();
                 int diff = numArr[1] - numArr[0];
                 boolean isHanSoo = true;
                 for (int j = 2; j < numArr.length; j++) {

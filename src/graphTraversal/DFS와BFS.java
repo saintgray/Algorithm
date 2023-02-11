@@ -11,7 +11,7 @@ public class DFS와BFS {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int N = params[0]; // 정점의 개수
         int M = params[1]; // 간선의 개수
         int V = params[2]; // 탐색을 시작할 정점 번호
@@ -19,7 +19,7 @@ public class DFS와BFS {
         StringBuilder result = new StringBuilder();
 
         for (int i = 1; i <= M; i++) {
-            int[] edgesInfo = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] edgesInfo = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int depart = edgesInfo[0];
             int arrival = edgesInfo[1];
             if (vertexes[depart] == null)
@@ -55,7 +55,7 @@ public class DFS와BFS {
 
     public static void dfs(StringBuilder result, Vertex[] vertexes, int V) {
         Vertex vertex = vertexes[V];
-        if (vertex == null || (vertex != null && vertex.searched == false)) {
+        if (vertex == null || !vertex.searched) {
             result.append(String.format("%d ", V));
             // 간선이 없을 시 탐색 종료
             if (vertex == null)
@@ -65,7 +65,7 @@ public class DFS와BFS {
         }
         List<Integer> edges = vertex.edges;
         edges = edges.stream()
-                .filter(e -> vertexes[e].searched == false)
+                .filter(e -> !vertexes[e].searched)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
         if (edges.size() == 0)
@@ -83,7 +83,7 @@ public class DFS와BFS {
         List<Integer> nextVArr = new ArrayList<>();
         for (int n : VArr) {
             Vertex vertex = vertexes[n];
-            if (vertex == null || (vertex != null && vertex.searched == false)) {
+            if (vertex == null || !vertex.searched) {
                 result.append(String.format("%d ", n));
                 // 간선이 없을 시 탐색 종료
                 if (vertex == null)
@@ -93,7 +93,7 @@ public class DFS와BFS {
             }
             List<Integer> edges = vertex.edges;
             edges = edges.stream()
-                    .filter(e -> vertexes[e].searched == false)
+                    .filter(e -> !vertexes[e].searched)
                     .sorted(Comparator.naturalOrder())
                     .collect(Collectors.toList());
 
@@ -102,7 +102,7 @@ public class DFS와BFS {
                 int edge = edges.get(i);
                 // 간선의 방향은 양방향이기 때문에 이미 탐색 이 끝난 정점에 대해
                 // 경로 추가 하지 않음
-                if(vertexes[edge].searched == false)
+                if(!vertexes[edge].searched)
                     result.append(String.format("%d ", edge));
                 vertexes[edge].searched = true;
             }
@@ -114,7 +114,7 @@ public class DFS와BFS {
 
     private static void writeAndClear(BufferedWriter out, StringBuilder result, Vertex[] vertexes) throws IOException {
         write(out, result);
-        Arrays.stream(vertexes).filter(e -> e != null).forEach(e -> e.searched = false);
+        Arrays.stream(vertexes).filter(Objects::nonNull).forEach(e -> e.searched = false);
     }
 
     private static void write(BufferedWriter out, StringBuilder result) throws IOException {

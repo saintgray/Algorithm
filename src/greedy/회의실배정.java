@@ -19,7 +19,7 @@ public class 회의실배정 {
         List<TimeInfo> timeInfos = new ArrayList<>();
         for (int i = 0; i < N; i++) {
             int[] info = Arrays.stream(in.readLine().split(" "))
-                    .mapToInt(e -> Integer.parseInt(e)).toArray();
+                    .mapToInt(Integer::parseInt).toArray();
             timeInfos.add(new TimeInfo(info[0], info[1]));
         }
         timeInfos = timeInfos.stream().sorted(Comparator.comparing(TimeInfo::getStart)

@@ -13,16 +13,14 @@ public class 섬의개수 {
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
         String param;
         while (!(param = in.readLine()).equals("0 0")) {
-            int[] mapInfo = Arrays.stream(param.split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] mapInfo = Arrays.stream(param.split(" ")).mapToInt(Integer::parseInt).toArray();
             int w = mapInfo[0];
             int h = mapInfo[1];
             int[][] map = new int[h + 1][w + 1];
             boolean[][] check = new boolean[h + 1][w + 1];
             for (int i = 1; i < h + 1; i++) {
-                int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
-                for (int j = 0; j < row.length; j++) {
-                    map[i][j + 1] = row[j];
-                }
+                int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+                System.arraycopy(row, 0, map[i], 1, row.length);
             }
 
             Queue<String> queue = new LinkedList<>();
@@ -48,7 +46,7 @@ public class 섬의개수 {
     static void run(int[][] map, boolean[][] check, Queue<String> queue) {
         if (queue.isEmpty())
             return;
-        int[] coordinate = Arrays.stream(queue.poll().split(",")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] coordinate = Arrays.stream(queue.poll().split(",")).mapToInt(Integer::parseInt).toArray();
         int i = coordinate[0];
         int j = coordinate[1];
 

@@ -54,7 +54,7 @@ public class ACM호텔 {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int testCase = Integer.parseInt(in.readLine());
         for (int i = 0; i < testCase; i++) {
-            int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int H = params[0];
             int M = params[1];
             int reservationNo = params[2];

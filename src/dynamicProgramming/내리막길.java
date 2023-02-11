@@ -18,12 +18,12 @@ public class 내리막길 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int[] param = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] param = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         M = param[0];
         N = param[1];
         Node[][] map = new Node[M][N];
         for (int i = 0; i < M; i++) {
-            int[] heights = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] heights = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < N; j++)
                 map[i][j] = new Node(i, j, heights[j], -1);
         }

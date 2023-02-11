@@ -12,7 +12,7 @@ public class 연구소 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int N = params[0];
         int M = params[1];
         int[][] lab = new int[N + 1][M + 1];
@@ -21,13 +21,13 @@ public class 연구소 {
         Queue<String> viruses = new LinkedList<>();
 
         for (int i = 0; i < N; i++) {
-            int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] row = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < row.length; j++) {
                 int stat = row[j];
                 lab[i + 1][j + 1] = stat;
                 if (stat == 0)
                     empty.add(String.format("%d,%d", i + 1, j + 1));
-                if (stat == 2){
+                if (stat == 2) {
                     String coord = String.format("%d,%d", i + 1, j + 1);
                     viruses.add(coord);
                     hostVirus.add(coord);
@@ -43,7 +43,7 @@ public class 연구소 {
                     lab[firstBrickPosition[0]][firstBrickPosition[1]] = 1;
                     lab[secondBrickPosition[0]][secondBrickPosition[1]] = 1;
                     lab[thirdBrickPosition[0]][thirdBrickPosition[1]] = 1;
-                    runInfested(lab, viruses, N,M);
+                    runInfested(lab, viruses, N, M);
                     safeZones = Math.max(safeZones, countSafeZone(lab, N, M));
                     clearLab(lab, hostVirus, viruses, empty.get(i), empty.get(j), empty.get(k));
                 }
@@ -79,7 +79,7 @@ public class 연구소 {
         runInfested(copy, q, N, M);
     }
 
-    static void clearLab(int[][] lab, List<String> hostVirus, Queue<String> viruses, String... bricks){
+    static void clearLab(int[][] lab, List<String> hostVirus, Queue<String> viruses, String... bricks) {
         for (int i = 1; i < lab.length; i++) {
             for (int j = 1; j < lab[i].length; j++) {
                 if (lab[i][j] == 2)
@@ -87,20 +87,20 @@ public class 연구소 {
             }
         }
         // reset host virus
-        for(String coordStr : hostVirus){
+        for (String coordStr : hostVirus) {
             int[] coord = getCoordinate(coordStr);
             lab[coord[0]][coord[1]] = 2;
             viruses.add(coordStr);
         }
         // reset briks
-        for(String coordStr : bricks){
+        for (String coordStr : bricks) {
             int[] coord = getCoordinate(coordStr);
             lab[coord[0]][coord[1]] = 0;
         }
     }
 
     static int[] getCoordinate(String str) {
-        return Arrays.stream(str.split(",")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        return Arrays.stream(str.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
     static int countSafeZone(int[][] copy, int N, int M) {

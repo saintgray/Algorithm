@@ -33,7 +33,7 @@ public class 평균 {
         int N = Integer.parseInt(in.readLine());
         int[] scores = Arrays
                 .stream(in.readLine().split(" "))
-                .mapToInt(e -> Integer.parseInt(e))
+                .mapToInt(Integer::parseInt)
                 .toArray();
 
         int max = scores[0];
@@ -41,9 +41,9 @@ public class 평균 {
             max = Math.max(max, scores[i]);
         }
         double newSum = 0;
-        for(int i =0; i<scores.length; i++){
-            newSum += (scores[i]/((double)max))*100;
+        for (int i = 0; i < scores.length; i++) {
+            newSum += (scores[i] / ((double) max)) * 100;
         }
-        System.out.println(newSum/N);
+        System.out.println(newSum / N);
     }
 }

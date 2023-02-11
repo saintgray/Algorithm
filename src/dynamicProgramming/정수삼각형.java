@@ -13,7 +13,7 @@ public class 정수삼각형 {
         int height = Integer.parseInt(in.readLine());
         Point[][] points = new Point[height][];
         for (int i = 0; i < height; i++) {
-            int[] infos = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] infos = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             points[i] = new Point[infos.length];
             for (int j = 0; j < infos.length; j++)
                 points[i][j] = new Point(i, j, infos[j], points);

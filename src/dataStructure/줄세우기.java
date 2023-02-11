@@ -16,7 +16,7 @@ public class 줄세우기 {
         Stack<Integer> tempStack = new Stack<>();
 
         int students = Integer.parseInt(in.readLine());
-        int[] tickets = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] tickets = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < students; i++) {
             reSorting(tempStack, result, tickets[i], i + 1);
         }

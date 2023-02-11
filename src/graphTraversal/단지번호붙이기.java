@@ -19,16 +19,16 @@ public class 단지번호붙이기 {
         int N = Integer.parseInt(in.readLine());
         House[][] houses = new House[N + 1][N + 1];
         for (int i = 1; i <= N; i++) {
-            int[] row = Arrays.stream(in.readLine().split("")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] row = Arrays.stream(in.readLine().split("")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < row.length; j++) {
                 if (row[j] != 0)
-                    houses[i][j+1] = new House(i, j + 1);
+                    houses[i][j + 1] = new House(i, j + 1);
             }
         }
 
         for (int i = 1; i < houses.length; i++) {
             for (int j = 1; j < houses[i].length; j++) {
-                if (houses[i][j] != null && !houses[i][j].counted){
+                if (houses[i][j] != null && !houses[i][j].counted) {
                     run(houses, houses[i][j], N);
                     complexInfo.add(count);
                     count = 0;
@@ -37,11 +37,8 @@ public class 단지번호붙이기 {
         }
 
         System.out.println(complexInfo.size());
-        if(!complexInfo.isEmpty()){
-            complexInfo.stream().sorted(Comparator.naturalOrder()).forEach(e -> {
-                System.out.println(e);
-            });
-        }
+        if (!complexInfo.isEmpty())
+            complexInfo.stream().sorted(Comparator.naturalOrder()).forEach(System.out::println);
         in.close();
     }
 
@@ -64,7 +61,7 @@ public class 단지번호붙이기 {
             next = houses[i][j - 1];
             run(houses, next, size);
         }
-        if (j + 1 <= size && houses[i][j + 1] != null && !houses[i][j + 1].counted){
+        if (j + 1 <= size && houses[i][j + 1] != null && !houses[i][j + 1].counted) {
             next = houses[i][j + 1];
             run(houses, next, size);
         }
@@ -73,7 +70,6 @@ public class 단지번호붙이기 {
     static class House {
         int i;
         int j;
-        int code;
         boolean counted;
 
         public House(int i, int j) {

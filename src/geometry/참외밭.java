@@ -16,7 +16,7 @@ public class 참외밭 {
         points[0] = new Point(0, 0);
 
         for (int i = 1; i < 7; i++)
-            points[i] = new Point(in.readLine(), points[i-1]);
+            points[i] = new Point(in.readLine(), points[i - 1]);
 
         int rightDiagnoalSum = 0;
         int leftDiagnoalSum = 0;
@@ -25,7 +25,7 @@ public class 참외밭 {
             leftDiagnoalSum += points[i].y * points[i + 1].x;
         }
 
-        System.out.println((Math.abs(rightDiagnoalSum-leftDiagnoalSum)/2)*melons);
+        System.out.println((Math.abs(rightDiagnoalSum - leftDiagnoalSum) / 2) * melons);
 
         in.close();
     }
@@ -35,7 +35,7 @@ public class 참외밭 {
         int y;
 
         public Point(String read, Point prevPoint) {
-            int[] coordinate = Arrays.stream(read.split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] coordinate = Arrays.stream(read.split(" ")).mapToInt(Integer::parseInt).toArray();
             int move = coordinate[1];
             int direction = coordinate[0];
             int prevX = prevPoint.x;

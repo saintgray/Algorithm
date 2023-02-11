@@ -19,35 +19,35 @@ public class 바이러스 {
         Computer[] computers = new Computer[Integer.parseInt(in.readLine()) + 1];
         int connections = Integer.parseInt(in.readLine());
         for (int i = 0; i < connections; i++) {
-            int[] connection = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] connection = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int no1 = connection[0];
             int no2 = connection[1];
 
-            if(computers[no1] == null)
+            if (computers[no1] == null)
                 computers[no1] = new Computer();
-            if(computers[no2] == null)
+            if (computers[no2] == null)
                 computers[no2] = new Computer();
             computers[no1].connection.add(no2);
             computers[no2].connection.add(no1);
         }
-        if(computers[1] != null){
+        if (computers[1] != null) {
             run(1, computers);
-            System.out.println(infested -1);
-        }else{
+            System.out.println(infested - 1);
+        } else {
             System.out.println(0);
         }
 
         in.close();
     }
 
-    static void run(int N, Computer[] computers){
+    static void run(int N, Computer[] computers) {
         Computer target = computers[N];
         infested++;
         target.infested = true;
         List<Integer> connection = target.connection;
-        if(!connection.isEmpty()){
-            connection.stream().forEach(n -> {
-                if(!computers[n].infested)
+        if (!connection.isEmpty()) {
+            connection.forEach(n -> {
+                if (!computers[n].infested)
                     run(n, computers);
             });
         }

@@ -14,7 +14,7 @@ public class 색종이 {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int papers = Integer.parseInt(in.readLine());
         for (int i = 0; i < papers; i++) {
-            int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int x = params[0];
             int y = params[1];
             for (int row = y; row < y + 10; row++) {

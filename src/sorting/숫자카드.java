@@ -12,14 +12,14 @@ public class 숫자카드 {
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
         int deckSize = Integer.parseInt(in.readLine());
         Map<Integer, Integer> cntMap = new HashMap<>();
-        int[] cards = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] cards = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < deckSize; i++) {
             int n = cards[i];
             Integer cnt = cntMap.get(n);
             cntMap.put(n, cnt == null ? 1 : cnt + 1);
         }
         int sangGunDeckSize = Integer.parseInt(in.readLine());
-        int[] sangGunCards = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] sangGunCards = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < sangGunDeckSize; i++) {
             int n = sangGunCards[i];
             Integer count = cntMap.get(n);

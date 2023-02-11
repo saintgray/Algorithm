@@ -12,12 +12,12 @@ import java.util.List;
 public class 미로탐색 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int[] mazePlate = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] mazePlate = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int N = mazePlate[0];
         int M = mazePlate[1];
         Point[][] maze = new Point[N + 1][M + 1];
         for (int i = 1; i <= N; i++) {
-            int[] points = Arrays.stream(in.readLine().split("")).mapToInt(e -> Integer.parseInt(e)).toArray();
+            int[] points = Arrays.stream(in.readLine().split("")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < M; j++) {
                 if (points[j] == 1)
                     maze[i][j + 1] = new Point(i, j + 1);

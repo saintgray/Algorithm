@@ -36,7 +36,7 @@ import java.util.Arrays;
 public class 손익분기점 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         if(params[2] - params[1] <= 0){
             System.out.println(-1);
         }else{
