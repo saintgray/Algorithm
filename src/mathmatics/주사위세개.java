@@ -31,13 +31,8 @@ public class 주사위세개 {
     public static void main(String[] args) throws IOException {
         Map<String,Integer> diceMap = new HashMap<>();
         String[] tried = in.readLine().split(" ");
-        for(String diceNum : tried){
-            if(diceMap.get(diceNum) == null){
-                diceMap.put(diceNum , 1);
-            }else{
-                diceMap.put(diceNum, diceMap.get(diceNum).intValue() + 1);
-            }
-        }
+        for(String diceNum : tried)
+            diceMap.merge(diceNum, 1, Integer::sum);
         int diceNum = 0;
         switch(diceMap.size()){
             case 1:{
@@ -46,16 +41,14 @@ public class 주사위세개 {
                 break;
             }
             case 2:{
-                diceNum = Integer.parseInt(diceMap.keySet().stream().filter( e -> diceMap.get(e).intValue() == 2).findFirst().get());
+                diceNum = Integer.parseInt(diceMap.keySet().stream().filter( e -> diceMap.get(e) == 2).findFirst().get());
                 System.out.println(1000 + (100*diceNum));
                 break;
             }
             case 3:{
                 int max = 0;
-                Iterator<String> diceNums = diceMap.keySet().iterator();
-                while(diceNums.hasNext()){
-                    max = Math.max(max, Integer.parseInt(diceNums.next()));
-                }
+                for (String s : diceMap.keySet())
+                    max = Math.max(max, Integer.parseInt(s));
                 System.out.println(max * 100);
                 break;
             }

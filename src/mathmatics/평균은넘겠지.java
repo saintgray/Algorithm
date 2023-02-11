@@ -28,7 +28,7 @@ public class 평균은넘겠지 {
 
         for (int i = 0; i < classes; i++) {
             int[] params = Arrays.stream(in.readLine().split(" "))
-                    .mapToInt(e -> Integer.parseInt(e))
+                    .mapToInt(Integer::parseInt)
                     .toArray();
             int students = params[0];
             double avg = (Arrays.stream(params).sum() - students) / (double) students;
