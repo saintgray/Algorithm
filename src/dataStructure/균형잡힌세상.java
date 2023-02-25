@@ -7,7 +7,6 @@ import java.util.Stack;
 
 //	4949 : 균형잡힌 세상
 //	ref url : https://www.acmicpc.net/problem/4949
-
 public class 균형잡힌세상 {
     public static void main(String[] args) throws IOException {
 
