@@ -31,7 +31,9 @@ package numberTheory;
 //    제한
 //    4 ≤ n ≤ 10,000
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +63,6 @@ public class 골드바흐의추측 {
 
         int testCases = Integer.parseInt(in.readLine());
         for (int i = 0; i < testCases; i++) {
-            Integer diff = null;
             Integer resultA = null;
             Integer resultB = null;
 
@@ -75,16 +76,8 @@ public class 골드바흐의추측 {
                     int B = primeNumbers.get(k++);
                     if(A+B > num) break;
                     if (num - A == B) {
-                        if (diff == null) {
-                            resultA = A;
-                            resultB = B;
-                        } else {
-                            if (B - A < diff) {
-                                diff = B - A;
-                                resultA = A;
-                                resultB = B;
-                            }
-                        }
+                        resultA = A;
+                        resultB = B;
                     }
                 }
             }

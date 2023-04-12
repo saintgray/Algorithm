@@ -52,26 +52,22 @@ public class 좌표정렬하기 {
 		
 		list.stream().forEach(coord -> {System.out.println(coord.toString());});	
 	}
+	static class Coordinate{
+
+		int x;
+		int y;
+
+		public Coordinate(String args) {
+			this.x=Integer.parseInt(args.split(" ")[0]);
+			this.y=Integer.parseInt(args.split(" ")[1]);
+		}
+
+		@Override
+		public String toString() {
+			return String.valueOf(this.x).concat(" ").concat(String.valueOf(this.y));
+		}
+	}
 }
 
 
-class Coordinate{
- 	
-	int x;
-	int y;
-	
-	public Coordinate(String args) {
-		this.x=Integer.parseInt(args.split(" ")[0]);
-		this.y=Integer.parseInt(args.split(" ")[1]);
-	}
 
-	@Override
-	public String toString() {
-		return String.valueOf(this.x).concat(" ").concat(String.valueOf(this.y));
-	}
-	
-	
-	
-	
-	
-}

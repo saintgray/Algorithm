@@ -201,35 +201,36 @@ public class 어린왕자 {
 		return outAndIn;
 
 	}
+	static  class Coordinate {
+		int x;
+		int y;
+
+		public Coordinate(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		@Override
+		public String toString() {
+			return "현재 좌표는: " + this.x + "," + this.y + " 입니다.";
+		}
+	}
+
+	static class Planet {
+		Coordinate location;
+		int radius;
+
+		public Planet(Coordinate location, int r) {
+			this.location = location;
+			this.radius = r;
+		}
+
+		@Override
+		public String toString() {
+			return "현재 좌표는: " + this.location.x + "," + this.location.y + " 입니다.";
+		}
+	}
 
 }
 
-class Coordinate {
-	int x;
-	int y;
 
-	public Coordinate(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-
-	@Override
-	public String toString() {
-		return "현재 좌표는: " + this.x + "," + this.y + " 입니다.";
-	}
-}
-
-class Planet {
-	Coordinate location;
-	int radius;
-
-	public Planet(Coordinate location, int r) {
-		this.location = location;
-		this.radius = r;
-	}
-
-	@Override
-	public String toString() {
-		return "현재 좌표는: " + this.location.x + "," + this.location.y + " 입니다.";
-	}
-}
