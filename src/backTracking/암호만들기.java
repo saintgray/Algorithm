@@ -21,8 +21,6 @@ public class 암호만들기 {
     static int C = 0;
 
     public static void main(String[] args) throws IOException {
-
-
         int[] params = Arrays.stream(in.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         L = params[0];
         C = params[1];
