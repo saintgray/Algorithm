@@ -25,7 +25,7 @@ public class 크게만들기 {
                 while (!dq.isEmpty() && c > dq.getLast() && N - K - dq.size() <= N - i - 1) {
                     // 1. queue 가 비어있지 않고
                     // 2. 숫자가 queue 의 마지막 수보다 크면서
-                    // 3. K 자리수가 되기 위해 채워야 하는 갯수보다 남아있는 숫자의 갯수가 같거나 클 때
+                    // 3. N - K 자리수가 되기 위해 채워야 하는 갯수보다 남아있는 숫자의 갯수가 같거나 클 때
                     dq.removeLast();
                 }
                 dq.add(c);
