@@ -28,7 +28,6 @@ public class 용액 {
                 diff = _diff;
             }
             if (diff == 0) {
-                System.out.println("diff 0 break");
                 break;
             }
             // 다음 start pointer 값의 합과 0 과의 차이
