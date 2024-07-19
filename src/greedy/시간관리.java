@@ -16,6 +16,7 @@ public class 시간관리 {
         int N = Integer.parseInt(in.readLine());
         List<Work> works = new ArrayList<>();
         int maxDeadLine = 0;
+
         for (int i = 0; i < N; i++) {
             Work work = new Work(in.readLine().split(" "));
             works.add(work);
@@ -23,7 +24,7 @@ public class 시간관리 {
         }
 
         works.sort(Comparator.comparing(obj -> ((Work) obj).deadline, Comparator.reverseOrder())
-                .thenComparing(obj -> ((Work) obj).deadline - ((Work) obj).time, Comparator.naturalOrder()));
+                .thenComparing(obj -> ((Work) obj).deadline - ((Work) obj).time, Comparator.reverseOrder()));
 
         int curTime = maxDeadLine;
         for (Work work : works) {
