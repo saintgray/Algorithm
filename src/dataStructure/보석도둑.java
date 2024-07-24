@@ -35,7 +35,6 @@ public class 보석도둑 {
         int last = 1;
         long result = 0;
         for (int i = 0; i < K; i++) {
-            // 가방 수보다 보석수가 더 적은 경우를 고려
             int capacity = capacities[i];
             // 훔치지 않는 보석들 중 보석이 수용할 수 있는 무게 한도 내에서 우선순위 큐에 삽입
             while (idx < N && jewels[idx].weight <= capacity) {
