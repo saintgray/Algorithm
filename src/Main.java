@@ -4,22 +4,46 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-
+// https://www.acmicpc.net/problem/4386
 public class Main {
+    static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
-        int tc = Integer.parseInt(in.readLine());
-
-        for (int i = 0; i < tc; i++) {
-            List<Integer> list = Arrays.stream(in.readLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
-            list.sort(Comparator.reverseOrder());
-            out.write(list.get(2) + "\n");
+        int N = Integer.parseInt(in.readLine());
+        V[] stars = new V[N];
+        for (int i = 0; i < N; i++) {
+            String[] parms = in.readLine().split(" ");
+            stars[i] = new V(Double.parseDouble(parms[0]), Double.parseDouble(parms[2]));
         }
-        out.flush();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(i == j) continue;
+                // stars[i].line.add(new E(stars[i], stars[j],))
+            }
+        }
+    }
+
+    static class V {
+        double x;
+        double y;
+        boolean checked;
+        PriorityQueue<E> line = new PriorityQueue<>();
+
+        public V(double x, double y) {
+            this.x = x;
+            this.y = y;
+            this.line = new PriorityQueue<>();
+        }
+    }
+    static class E implements Comparable<E> {
+        V u;
+        V v;
+        int d;
+
+        @Override
+        public int compareTo(E e) {
+            return Integer.compare(this.d, e.d);
+        }
     }
 }
