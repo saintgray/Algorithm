@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 
 //    4386 : 별자리 만들기
 //    ref url : https://www.acmicpc.net/problem/4386
+//    tag : kruskal algorithm
 public class 별자리만들기 {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
