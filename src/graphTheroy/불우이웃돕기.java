@@ -1,4 +1,4 @@
-package graphTraversal;
+package graphTheroy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.List;
 
 //    1414 : 불우이웃돕기
 //    ref url : https://www.acmicpc.net/problem/1414
-//    ref alg : kruskal algorithm
+//    tag : kruskal algorithm
 public class 불우이웃돕기 {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static Computer[] computers;

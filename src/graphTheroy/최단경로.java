@@ -1,4 +1,4 @@
-package dijkstra;
+package graphTheroy;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +9,7 @@ import java.util.PriorityQueue;
 
 //    1753 : 최단경로
 //    ref url : https://www.acmicpc.net/problem/1753
+//    tag : dijkstra
 public class 최단경로 {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));

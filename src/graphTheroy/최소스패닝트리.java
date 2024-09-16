@@ -1,4 +1,4 @@
-package graphTraversal;
+package graphTheroy;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import java.util.Comparator;
 
 //    1197 : 최소 스패닝 트리
 //    ref url : https://www.acmicpc.net/problem/1197
-//    see union-find, kruskal algorithm
+//    tag : union-find, kruskal algorithm
 public class 최소스패닝트리 {
 
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

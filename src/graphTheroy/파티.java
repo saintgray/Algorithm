@@ -1,4 +1,4 @@
-package dijkstra;
+package graphTheroy;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
 
 //    1238 : 파티
 //    ref url : https://www.acmicpc.net/problem/1238
+//    tag : dijkstra
 public class 파티 {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
